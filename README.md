@@ -1,4 +1,4 @@
-# advanced-forms
+# vue-3-forms
 
 ## Project setup
 ```
