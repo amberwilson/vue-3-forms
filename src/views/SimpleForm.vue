@@ -83,8 +83,10 @@ export default
         'https://my-json-server.typicode.com/amberwilson/vue-3-forms/events',
         this.event
       ).then(
+        // eslint-disable-next-line no-console
         (response) => console.log('Resonse', response)
       ).catch(
+        // eslint-disable-next-line no-console
         (error) => console.log('Event POST Error', error)
       )
     }

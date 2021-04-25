@@ -46,7 +46,6 @@ export default {
     }
   },
   setup () {
-    console.log('in setup')
     return { uuid: UniqueId().getId() }
   }
 }
