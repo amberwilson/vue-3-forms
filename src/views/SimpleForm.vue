@@ -3,15 +3,9 @@
     <h1>Create an event</h1>
     <form>
 
-      <label>Select a category</label>
-      <select v-model="event.category">
-        <option
-          v-for="option in categories"
-          :value="option"
-          :key="option"
-          :selected="option === event.category"
-        >{{ option }}</option>
-      </select>
+      <pre><code>{{ event }}</code></pre>
+
+      <BaseSelect v-model="event.category" :options="categories" label="Select a category" />
 
       <h3>Name & describe your event</h3>
 
@@ -68,7 +62,8 @@
 </template>
 
 <script>
-export default {
+export default
+{
   data () {
     return {
       categories: [
