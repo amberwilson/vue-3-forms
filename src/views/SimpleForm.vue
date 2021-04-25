@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Create an event</h1>
-    <form>
+    <form @submit.prevent="sendForm">
 
       <BaseSelect v-model="event.category" :options="categories" label="Select a category" />
 
@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default
 {
   data () {
@@ -62,6 +64,18 @@ export default
         { label: 'Yes', value: 1 },
         { label: 'No', value: 0 }
       ]
+    }
+  },
+  methods: {
+    sendForm () {
+      axios.post(
+        'https://my-json-server.typicode.com/amberwilson/vue-3-forms/events',
+        this.event
+      ).then(
+        (response) => console.log('Resonse', response)
+      ).catch(
+        (error) => console.log('Event POST Error', error)
+      )
     }
   }
 }
