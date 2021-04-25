@@ -3,8 +3,6 @@
     <h1>Create an event</h1>
     <form>
 
-      <pre><code>{{ event }}</code></pre>
-
       <BaseSelect v-model="event.category" :options="categories" label="Select a category" />
 
       <h3>Name & describe your event</h3>
@@ -18,11 +16,7 @@
 
       <h3>Are pets allowed?</h3>
       <div>
-        <BaseRadio name="pets" label="Yes" v-model="event.pets" :value="1" />
-      </div>
-
-      <div>
-        <BaseRadio name="pets" label="No" v-model="event.pets" :value="0" />
+        <BaseRadioGroup v-model="event.pets" name="pets" :options="petOptions" />
       </div>
 
       <h3>Extras</h3>
@@ -63,7 +57,11 @@ export default
           catering: false,
           music: false
         }
-      }
+      },
+      petOptions: [
+        { label: 'Yes', value: 1 },
+        { label: 'No', value: 0 }
+      ]
     }
   }
 }
