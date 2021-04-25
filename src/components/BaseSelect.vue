@@ -1,5 +1,5 @@
 <template>
-  <label v-if="label">{{ label }}</label>
+  <label :for="uuid" v-if="label">{{ label }}</label>
   <select
     class="field"
     :value="modelValue"
@@ -7,6 +7,8 @@
       ...$attrs,
       onChange: ($event) => { $emit('update:modelValue', $event.target.value) }
     }"
+    :id="uuid"
+    :aria-describedby="error ? `${uuid}-error` : null"
   >
     <option
       v-for="option in options"
@@ -15,9 +17,19 @@
       :selected="option === modelValue"
     >{{ option }}</option>
   </select>
+  <p
+    v-if="error"
+    class="error-message"
+    :id="`${uuid}-error`"
+    aria-live="assertive"
+  >
+    {{ error }}
+  </p>
 </template>
 
 <script>
+import UniqueId from '@/features/UniqueId'
+
 export default {
   props: {
     label: {
@@ -32,6 +44,10 @@ export default {
       type: Array,
       required: true
     }
+  },
+  setup () {
+    console.log('in setup')
+    return { uuid: UniqueId().getId() }
   }
 }
 </script>
